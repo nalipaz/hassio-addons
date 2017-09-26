@@ -6,12 +6,6 @@ MYUID="10007"
 OS=""
 CONFIG_PATH=/data/options.json
 
-PROTOCOL=$(jq --raw-output ".protocol" $CONFIG_PATH)
-IP_RETRIEVAL_ADDRESS=$(jq --raw-output ".ipretrievaladdress" $CONFIG_PATH)
-SERVER=$(jq --raw-output ".server" $CONFIG_PATH)
-LOGIN=$(jq --raw-output ".login" $CONFIG_PATH)
-PASSWORD=$(jq --raw-output ".password" $CONFIG_PATH)
-
 mustache-cli /data/options.json /templates/ddclient.mustache > /etc/ddclient.conf
 
 DectectOS(){
