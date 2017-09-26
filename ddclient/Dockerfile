@@ -17,7 +17,7 @@ apk add -U --no-cache \
 go get -u github.com/quantumew/mustache-cli && \
 cp $GOPATH/bin/* /usr/local/bin/ && \
 rm -rf $GOPATH && \
-apk del .build-deps && \
+apk del .build-deps
 RUN curl -o /usr/sbin/ddclient -L https://cdn.rawgit.com/ddclient/ddclient/7321959383e90e22f4932ee559fbc54367e1f882/ddclient
 RUN apk add --no-cache perl perl-io-socket-ssl nano
 
