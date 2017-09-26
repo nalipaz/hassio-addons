@@ -1,8 +1,10 @@
 FROM %%BASE_IMAGE%%
 
 # Add env
-ENV LANG C.UTF-8
-ENV GOPATH /opt/go
+ENV LANG='C.UTF-8'\
+ LANGUAGE='C.UTF-8'\
+ TERM='xterm'\
+ GOPATH='/opt/go'
 
 # Setup base
 RUN apk upgrade --no-cache && \
@@ -18,21 +20,21 @@ cp $GOPATH/bin/* /usr/local/bin/ && \
 rm -rf $GOPATH && \
 apk del .build-deps && \
 apk add --no-cache --virtual=build-deps\
- make \
- gcc \
- g++ \
- perl-dev \
- libxml2-dev \
- libressl-dev \
- wget \
- git \
+ make\
+ gcc\
+ g++\
+ perl-dev\
+ libxml2-dev\
+ libressl-dev\
+ wget\
+ git\
  expat-dev && \
 apk add --no-cache --virtual=run-deps \
- ca-certificates \
- su-exec \
- libressl \
- ssmtp \
- mailx \
+ ca-certificates\
+ su-exec\
+ libressl\
+ ssmtp\
+ mailx\
  perl && \
 wget https://cpanmin.us/ -O /usr/local/bin/cpanm && \
 chmod +x /usr/local/bin/cpanm && \
