@@ -29,7 +29,7 @@ RUN apk update && apk add make gcc libc-dev wget ca-certificates tzdata \
     && cd /usr/local/bin \
         && wget https://cpanmin.us/ -O cpanm \
         && chmod +x cpanm
-        %% cpanm -V
+        && cpanm -V
 #  cpanm  IO::Socket::SSL JSON::Any IO::Socket::INET6 Data::Validate::IP
 
 RUN wget -O /usr/sbin/ddclient https://cdn.rawgit.com/ddclient/ddclient/7321959383e90e22f4932ee559fbc54367e1f882/ddclient &&\
