@@ -6,7 +6,7 @@
   "url": "https://github.com/nalipaz/hassio-addons/tree/master/ddclient",
   "startup": "system",
   "boot": "auto",
-  "image": "nalipaz/{arch}-ddclient",
+  "image": "nicholasalipaz/{arch}-ddclient",
   "options": {
     "protocol": "easydns",
     "remote_ip_utility_url": "support.easydns.com/utils/get_ip.php",
