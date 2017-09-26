@@ -22,8 +22,6 @@ RUN wget -O /usr/sbin/ddclient https://cdn.rawgit.com/ddclient/ddclient/73219593
 RUN apk add --no-cache perl perl-io-socket-ssl nano
 
 COPY container /
-RUN mustache-cli /data/options.json /templates/ddclient.mustache > /etc/ddclient.conf
 RUN ln -s /etc/ddclient.conf /etc/ddclient/ddclient.conf
 
-CMD ["/entrypoint.sh"]
-ENTRYPOINT ["ddclient", "-foreground", "-verbose", "-daemon=30"]
+ENTRYPOINT ["/entrypoint.sh"]
