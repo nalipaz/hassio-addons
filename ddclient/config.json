@@ -1,6 +1,6 @@
 {
   "name": "DDclient",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "slug": "ddclient",
   "description": "A Perl client used to update dynamic DNS entries for accounts on Dynamic DNS Network Service Provider.",
   "url": "https://github.com/nalipaz/hassio-addons/tree/master/ddclient",
