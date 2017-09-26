@@ -19,8 +19,18 @@ cp $GOPATH/bin/* /usr/local/bin/ && \
 rm -rf $GOPATH && \
 apk del .build-deps
 
-RUN apk add --no-cache perl perl-io-socket-ssl &&\
- cpanm  IO::Socket::SSL JSON::Any IO::Socket::INET6 Data::Validate::IP
+RUN apk update && apk add make gcc libc-dev wget ca-certificates tzdata \
+    && cd /tmp \
+        && wget http://www.cpan.org/src/5.0/perl-5.24.0.tar.gz \
+        && tar xvzf perl-5.24.0.tar.gz \
+    && cd perl-5.24.0 \
+        && ./Configure -des && make && make install \
+        && cd /tmp && rm -rf perl-5.24.0* \
+    && cd /usr/local/bin \
+        && wget https://cpanmin.us/ -O cpanm \
+        && chmod +x cpanm
+
+RUN cpanm  IO::Socket::SSL JSON::Any IO::Socket::INET6 Data::Validate::IP
 
 RUN wget -O /usr/sbin/ddclient https://cdn.rawgit.com/ddclient/ddclient/7321959383e90e22f4932ee559fbc54367e1f882/ddclient &&\
  chmod +x /usr/sbin/ddclient
