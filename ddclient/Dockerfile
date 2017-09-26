@@ -28,7 +28,7 @@ RUN apk update && apk add make gcc libc-dev wget ca-certificates tzdata \
         && cd /tmp && rm -rf perl-5.24.0* \
     && cd /usr/local/bin \
         && wget https://cpanmin.us/ -O cpanm \
-        && chmod +x cpanm
+        && chmod +x cpanm \
         && cpanm -V
 #  cpanm  IO::Socket::SSL JSON::Any IO::Socket::INET6 Data::Validate::IP
 
