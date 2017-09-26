@@ -36,7 +36,7 @@ apk add --no-cache --virtual=run-deps \
  perl && \
 wget https://cpanmin.us/ -O /usr/local/bin/cpanm && \
 chmod +x /usr/local/bin/cpanm && \
-/usr/local/bin/cpanm  IO::Socket::SSL JSON::Any IO::Socket::INET6 Data::Validate::IP && \
+/usr/local/bin/cpanm IO::Socket::SSL JSON::Any IO::Socket::INET6 Data::Validate::IP && \
 git clone --depth 1 https://github.com/wimpunk/ddclient /opt/ddclient && \
 apk del --no-cache --purge build-deps  && \
 rm -rf /opt/ddclient/.git\
