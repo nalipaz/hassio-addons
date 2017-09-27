@@ -4,8 +4,9 @@ python:
   - 2.7
 
 env:
-  - ADDON="ddclient"
-  - secure: xTsdRaTqbwddHoPyB3DZ/Cfzj6dKLZfGylpqHRGmRvnZ5xZyxhNDcBsDVF8srC3Iilrr8MQB6Wc2LqnO7PVKIngzLsNjwo5IbaaF40r0+pmcMzjPPPiKhJEUXjZ2nJPYXY+GJNg/DHvyTFvFa5IyvnlKOgCFCfl/IWvp+cINn0I0gmBoO0A8sQGg9juXgvyAK/HVt7RakrTe6yz/+6OtkFCqK0WyajeBm8oN6n4up0CrZanwSqBwMCTLqf3JWVUeek9YeBFpqQL1akKTci+ioYvMIkSWuADdL1pElNb3yC5Jvju/1GKY6Th7uXcmwZGdb7CjwYK7PM6OVXg9BH5tiQ==
+  - ADDON=ddclient
+  - secure: 4xC5AAfwaMCA/y1ZgcYgjAUqiB0PjLqBU7fWkLLIXPRHJgRvlH3aqp6qLwHxtQKw8RThIsfHb67tpHWc0JvoGpOWflGr2Tx+5581mU/tkXFjExiN4W0GrQofrodBvmaH0V9Ee6EtnmX17rmHRA4BcDMrRLjQXwhlZZLCSmcmbKrXmn+JHQEuQR6ma+aXab5R3rLvDGEpoHAoF+rUAsGmkesDIH2iXzL+fTjJRJbr9oFsX39Ih0OYmiGI+G2B0Pr7/Vy2xO+AK8BEkxyRtpZltPUSuOpBkK2YrnLZFGUsGH4gTVDIFj5dXxMnFyaeDFHNb0jB7sDuEOyHRul0LpQZKw==
+  - secure: wnmYnlMFl2mYvnXfQ9eO0YNhe2cmlF70MtiABwZOWmixbr5GzXyCmMp1BgUwsXntBzTojAShi1NO9JLPQgDVeFGvg2U7bmiwz/yQTz8tmdpvqCsQrIfRLaWf6gDe6tFS+1WvClGhMwsqWuIVlufxj3UVD8lG5Weq86f54vUA2gONZweobWQu+TvDAJyKhERUkq/FABzE9tdRJ9Jm7cbvCdPrUYDjrfYz2DFe8wt9U3ulPVzq/KeCDz/ohbGGiV+pnSvgR3Ph04zyWUvbd5W0rYRQRfekY/lYhgIxpvpornNfz4Eo2Oomyu51hgbuMSuOm3LlJiozdnaZ1cLmRf+I7A==
 
 integrations:
   hub:
@@ -14,7 +15,7 @@ integrations:
 
 build:
   ci:
-    - sudo apt-get install jq
+    - sudo apt-get install jq -y
     - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASS
     - docker pull homeassistant/amd64-builder
     - docker run --rm --privileged -v ~/.docker:/root/.docker homeassistant/amd64-builder:20170926 --all -t $ADDON -r https://github.com/nalipaz/hassio-addons -b master
