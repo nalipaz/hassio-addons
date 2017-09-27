@@ -51,7 +51,4 @@ rm -rf /opt/ddclient/.git\
 
 COPY container /
 
-### Start ddclient
-COPY ./docker-entrypoint.sh /
-RUN chmod a+x /docker-entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
