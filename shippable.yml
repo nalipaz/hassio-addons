@@ -18,5 +18,6 @@ build:
   ci:
     - sudo apt-get install jq -y
     - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASS
-    - docker pull homeassistant/amd64-builder
+    - docker pull homeassistant/amd64-builder:20170926
+    - cd ~ && ls -la && pwd
     - docker run --rm --privileged -v ~/.docker:/root/.docker homeassistant/amd64-builder:20170926 --all -t $ADDON -r https://github.com/nalipaz/hassio-addons -b master
