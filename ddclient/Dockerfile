@@ -19,22 +19,36 @@ cp $GOPATH/bin/* /usr/local/bin/ && \
 rm -rf $GOPATH && \
 apk del .build-deps
 
-RUN apk update && apk add make gcc libc-dev wget ca-certificates tzdata \
-    && cd /tmp \
-        && wget http://www.cpan.org/src/5.0/perl-5.24.0.tar.gz \
-        && tar xvzf perl-5.24.0.tar.gz
-RUN cd /tmp/perl-5.24.0 \
-            && ./Configure -des
-RUN cd /tmp/perl-5.24.0 \
-            && make
-RUN cd /tmp/perl-5.24.0 \
-            && make install
-RUN cd /tmp && rm -rf perl-5.24.0*
-RUN cd /usr/local/bin \
-        && wget https://cpanmin.us/ -O cpanm \
-        && chmod +x cpanm \
-        && cpanm -V \
-    && cpanm  IO::Socket::SSL JSON::Any IO::Socket::INET6 Data::Validate::IP
+RUN apk upgrade --no-cache && \
+    apk add --no-cache --virtual=build-deps \
+      make \
+      gcc \
+      g++ \
+      perl-dev \
+      libxml2-dev \
+      openssl-dev \
+      wget \
+      git \
+      expat-dev && \
+    apk add --no-cache --virtual=run-deps \
+      ca-certificates \
+      su-exec \
+      openssl \
+      ssmtp \
+      mailx \
+      perl && \
+    wget https://cpanmin.us/ -O /usr/local/bin/cpanm && \
+    chmod +x /usr/local/bin/cpanm && \
+    /usr/local/bin/cpanm  IO::Socket::SSL JSON::Any IO::Socket::INET6 Data::Validate::IP && \
+    git clone --depth 1 https://github.com/wimpunk/ddclient /opt/ddclient && \
+    apk del --no-cache --purge \
+      build-deps  && \
+    rm -rf /opt/ddclient/.git \
+           /usr/local/bin/cpanm \
+           /root/.cpan \
+           /tmp/* \
+           /var/cache/apk/*  \
+           /var/tmp/*
 
 RUN wget -O /usr/sbin/ddclient https://cdn.rawgit.com/ddclient/ddclient/7321959383e90e22f4932ee559fbc54367e1f882/ddclient &&\
  chmod +x /usr/sbin/ddclient
