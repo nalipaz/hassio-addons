@@ -1,0 +1,35 @@
+{
+  "name": "Internet Automated Dynamic DNS Client",
+  "version": "0.1.0",
+  "slug": "inadyn",
+  "description": "Inadyn is a small and simple Dynamic DNS, DDNS, client with HTTPS support. Commonly available in many GNU/Linux distributions, used in off the shelf routers and Internet gateways to automate the task of keeping your Internet name in sync with your public¹ IP address. It can also be used in installations with redundant (backup) connections to the Internet.",
+  "url": "https://github.com/nalipaz/hassio-addons/tree/master/inadyn",
+  "startup": "system",
+  "boot": "auto",
+  "image": "nicholasalipaz/{arch}-inadyn",
+  "options": {
+    "providers": [
+      {
+        "provider": "easydns",
+        "username": "username",
+        "password": "password",
+        "hostname": "example.com"
+      }]
+  },
+  "schema": {
+    "providers": [
+      {
+        "provider": "str",
+        "username": "str",
+        "password": "str",
+        "hostname": "str",
+        "ssl": "bool",
+        "user_agent": "str",
+        "checkip_ssl": "bool",
+        "checkip_server": "str",
+        "checkip_command": "str",
+        "checkip_path": "str"
+      }
+    ]
+  }
+}
