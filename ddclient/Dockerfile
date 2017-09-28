@@ -8,7 +8,7 @@ ENV LANG='C.UTF-8'\
  GOPATH='/opt/go'
 
 # Setup base
-RUN apk upgrade --no-cache &&\
+RUN apk upgrade --no-cache && \
 apk add --no-cache -U --virtual .build-deps\
  build-base\
  git\
@@ -16,10 +16,10 @@ apk add --no-cache -U --virtual .build-deps\
 go get -u github.com/quantumew/mustache-cli && \
 cp $GOPATH/bin/* /usr/local/bin/ && \
 rm -rf $GOPATH && \
-apk del .build-deps && \
 apk add --no-cache perl perl-io-socket-ssl && \
 git clone --depth 1 https://github.com/wimpunk/ddclient /opt/ddclient && \
-rm -rf /opt/ddclient/.git
+rm -rf /opt/ddclient/.git && \
+apk del .build-deps
 
 COPY container /
 
