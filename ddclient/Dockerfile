@@ -18,7 +18,7 @@ cp $GOPATH/bin/* /usr/local/bin/ && \
 rm -rf $GOPATH && \
 apk add --no-cache perl perl-io-socket-ssl && \
 git clone --depth 1 https://github.com/wimpunk/ddclient /opt/ddclient && \
-ln -s /opt/ddclient/ddclient /usr/local/sbin/ddclient && \
+ln -s /opt/ddclient/ddclient /usr/local/bin/ && \
 rm -rf /opt/ddclient/.git && \
 apk del .build-deps
 
