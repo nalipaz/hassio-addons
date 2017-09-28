@@ -9,7 +9,7 @@ ENV LANG='C.UTF-8'\
 
 # Setup base
 RUN apk upgrade --no-cache && \
-apk add --no-cache -U --virtual .build-deps\
+apk add --no-cache --virtual .build-deps\
  build-base\
  git\
  go && \
@@ -18,6 +18,7 @@ cp $GOPATH/bin/* /usr/local/bin/ && \
 rm -rf $GOPATH && \
 apk add --no-cache perl perl-io-socket-ssl && \
 git clone --depth 1 https://github.com/wimpunk/ddclient /opt/ddclient && \
+ln -s /opt/ddclient/ddclient /usr/local/sbin/ddclient
 rm -rf /opt/ddclient/.git && \
 apk del .build-deps
 
