@@ -19,7 +19,7 @@ build:
     image_name: homeassistant/amd64-builder
     image_tag: 20170926
     pull: true
-    options: "--rm --privileged -e HOME=/root -v /root/.docker:/root/.docker -v /root/$ADDON:/data --all -t /data"
+    options: "--rm --privileged -e HOME=/root -v /root/.docker:/root/.docker -v /root/$ADDON:/data -t /data"
     # docker run --rm --privileged -v /root/.docker:/root/.docker --all -t local/$ADDON -r https://github.com/nalipaz/hassio-addons -b master homeassistant/amd64-builder:20170926
   ci:
     - echo "everything was done in pre_ci_boot"
