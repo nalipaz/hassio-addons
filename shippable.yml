@@ -15,8 +15,10 @@ integrations:
       type: docker
 
 build:
+  pre_ci_boot:
+    image_name: homeassistant/amd64-builder
+    image_tag: 20170926
+    pull: true
+    options: "-e HOME=/root --all -t $ADDON -r https://github.com/nalipaz/hassio-addons -b master"
   ci:
-    - sudo apt-get install jq -y
-#    - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASS
-    - docker pull homeassistant/amd64-builder:20170926
-    - docker run --rm --privileged -v /root/.docker:/root/.docker homeassistant/amd64-builder:20170926 --all -t $ADDON -r https://github.com/nalipaz/hassio-addons -b master
+    - echo "everything was done in pre_ci_boot"
