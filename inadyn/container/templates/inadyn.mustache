@@ -1,15 +1,14 @@
 # Inadyn v2.0 configuration file format
 allow-ipv6 = true
-cache-dir = /var/cache/inadyn
 period = 3600
 forced-update = 2419200
 
 {{#providers}}
 provider {{provider}} {
     username         = {{username}}
-    password         = {{password}
-    hostname         = {{hostname}}
-    ssl              = {{ssl}}{{#user_agent}}
+    password         = {{password}}
+    hostname         = {{hostname}}{{#ssl}}
+    ssl              = {{ssl}}{{/ssl}}{{#user_agent}}
     user-agent       = {{user_agent}}{{/user_agent}}{{#checkip_ssl}}
     checkip-ssl      = {{checkip_ssl}}{{/checkip_ssl}}{{#checkip_server}}
     checkip-server   = {{checkip_server}}{{/checkip_server}}{{#checkip_command}}

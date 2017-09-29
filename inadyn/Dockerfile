@@ -1,9 +1,9 @@
 ARG BUILD_FROM
 FROM $BUILD_FROM
 
-ENV INADYN_RELEASE https://github.com/troglobit/inadyn/releases/download/v2.1/inadyn-2.1.tar.xz
-ENV LIBITE_RELEASE https://github.com/troglobit/libite/releases/download/v1.8.2/libite-1.8.2.tar.xz
-ENV LIBCONFUSE_RELEASE https://github.com/martinh/libconfuse/releases/download/v3.2/confuse-3.2.tar.xz
+ENV INADYN_RELEASE https://github.com/troglobit/inadyn/releases/download/v2.2/inadyn-2.2.tar.xz
+ENV LIBITE_RELEASE https://github.com/troglobit/libite/releases/download/v1.9.2/libite-1.9.2.tar.xz
+ENV LIBCONFUSE_RELEASE https://github.com/martinh/libconfuse/releases/download/v3.2.1/confuse-3.2.1.tar.xz
 
 ENV LANG='C.UTF-8'\
  LANGUAGE='C.UTF-8'\

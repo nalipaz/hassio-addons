@@ -1,0 +1,2 @@
+# Test data directories should not be committed.
+/*/data
