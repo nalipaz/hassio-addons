@@ -41,6 +41,6 @@ build:
     env: "TEST_OPTIONS='${TEST_OPTIONS}' SHIPPABLE=${SHIPPABLE}"
     options: "-e HOME=/root -v /tmp/hassio-data:/data"
 
-  push:
+  post_ci:
     - docker push ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION}
     - docker push ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:latest
