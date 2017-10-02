@@ -29,7 +29,7 @@ build:
     - echo ${TEST_OPTIONS} > ${SHIPPABLE_BUILD_DIR}/${ADDON}/data/options.json
 
   ci:
-    - docker run --rm -e HOME=/root -v ${SHIPPABLE_BUILD_DIR}/${ADDON}/data:/root/data ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION}
+    - docker run --rm -e HOME=/root -v ${SHIPPABLE_BUILD_DIR}/${ADDON}/data:/data ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION}
 
   push:
     - docker push ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION}
