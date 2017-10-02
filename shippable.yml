@@ -22,15 +22,24 @@ integrations:
       type: docker
 
 build:
+  pre_ci_boot:
+    options: "-v /app:/app"
+
   pre_ci:
     - docker build --build-arg BUILD_FROM="homeassistant/amd64-base:latest" -t ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION} -t ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:latest ${ADDON}
 
-  ci:
-    - >
-      mkdir /tmp/hassio-data;
-      touch /tmp/hassio-data/options.json;
-      echo ${TEST_OPTIONS} > /tmp/hassio-data/options.json;
-      docker run --rm -e HOME=/root -v /tmp/hassio-data:/data ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION};
+#  ci:
+#    - >
+#      mkdir /tmp/hassio-data;
+#      touch /tmp/hassio-data/options.json;
+#      echo ${TEST_OPTIONS} > /tmp/hassio-data/options.json;
+#      docker run --rm -e HOME=/root -v /tmp/hassio-data:/data ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION};
+  pre_ci_boot:
+    image_name: ${DOCKER_HUB_USER}/${ARCH}-${ADDON}
+    image_tag: ${VERSION}
+    pull: true
+    env: "TEST_OPTIONS='${TEST_OPTIONS}' SHIPPABLE=${SHIPPABLE}"
+    options: "-e HOME=/root -v /tmp/hassio-data:/data"
 
   push:
     - docker push ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION}
