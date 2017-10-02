@@ -28,11 +28,8 @@ build:
     - touch ${SHIPPABLE_BUILD_DIR}/${ADDON}/data/options.json
     - echo ${TEST_OPTIONS} > ${SHIPPABLE_BUILD_DIR}/${ADDON}/data/options.json
 
-  pre_ci_boot:
-    image_name: ${DOCKER_HUB_USER}/${ARCH}-${ADDON}
-    image_tag: ${VERSION}
-    pull: false
-    options: "--rm -e HOME=/root -v ${SHIPPABLE_BUILD_DIR}/${ADDON}/data:/root/data"
+  ci:
+    - docker run --rm -e HOME=/root -v ${SHIPPABLE_BUILD_DIR}/${ADDON}/data:/root/data ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION}
 
   push:
     - docker push ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION}
