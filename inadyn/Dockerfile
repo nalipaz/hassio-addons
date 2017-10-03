@@ -1,4 +1,5 @@
-FROM $BUILD_FROM
+ARG BUILD_FROM=hassioaddons/base-amd64
+FROM ${BUILD_FROM}
 
 ENV INADYN_RELEASE https://github.com/troglobit/inadyn/releases/download/v2.1/inadyn-2.1.tar.xz
 ENV LIBITE_RELEASE https://github.com/troglobit/libite/releases/download/v1.8.2/libite-1.8.2.tar.xz
