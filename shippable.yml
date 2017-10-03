@@ -36,3 +36,4 @@ build:
   post_ci:
     - docker push ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION}
     - docker push ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:latest
+
