@@ -9,7 +9,7 @@ ENV LANG='C.UTF-8'\
  LANGUAGE='C.UTF-8'\
  TERM='xterm'
 
-RUN apk --update add curl xz build-base libressl-dev ca-certificates
+RUN apk --no-cache add curl xz build-base libressl-dev ca-certificates
 RUN mkdir -p /tmp/src/libite /tmp/src/libconfuse /tmp/src/inadyn
 RUN curl -Lo /tmp/src/libite.tar.xz $LIBITE_RELEASE && \
 tar --strip-components=1 -C /tmp/src/libite -xJf /tmp/src/libite.tar.xz && \
