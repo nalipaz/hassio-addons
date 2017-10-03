@@ -22,7 +22,7 @@ integrations:
 
 build:
   pre_ci_boot:
-    options: "-v /hassio-data:/hassio-data -v ~/.docker:/root/.docker"
+    options: "-v /hassio-data:/hassio-data -v ~/.docker:/root/.docker -v ${SHIPPABLE_BUILD_DIR}:/shippable-build-dir"
 
   ci:
     - export VERSION=$(cat ${ADDON}/config.json | jq -r '.version')
@@ -30,4 +30,4 @@ build:
     - rm /hassio-data/* -rf
     - touch /hassio-data/options.json
     - echo ${TEST_OPTIONS} > /hassio-data/options.json
-    - docker run --rm --privileged -e HOME=/root -v /root/.docker:/root/.docker -v "${SHIPPABLE_BUILD_DIR}":/docker hassioaddons/build-env:latest --target ${ADDON} --tag-latest --${ARCH} --push
+    - docker run --rm --privileged -e HOME=/root -v /root/.docker:/root/.docker -v "/shippable-build-dir":/docker hassioaddons/build-env:latest --target ${ADDON} --tag-latest --${ARCH} --push
