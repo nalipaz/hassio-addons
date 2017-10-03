@@ -16,6 +16,7 @@ before_install:
   - docker --version
 
 script:
+  - sed -i "1s/.*/FROM homeassistant\/${ARCH}-base:latest/" ${ADDON}/Dockerfile
   - export VERSION=$(cat ${ADDON}/config.json | jq -r '.version')
   - echo "VERSION is $VERSION"
   - mkdir ${TRAVIS_BUILD_DIR}/hassio-data
