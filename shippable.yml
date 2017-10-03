@@ -9,11 +9,11 @@ env:
     - secure: wnmYnlMFl2mYvnXfQ9eO0YNhe2cmlF70MtiABwZOWmixbr5GzXyCmMp1BgUwsXntBzTojAShi1NO9JLPQgDVeFGvg2U7bmiwz/yQTz8tmdpvqCsQrIfRLaWf6gDe6tFS+1WvClGhMwsqWuIVlufxj3UVD8lG5Weq86f54vUA2gONZweobWQu+TvDAJyKhERUkq/FABzE9tdRJ9Jm7cbvCdPrUYDjrfYz2DFe8wt9U3ulPVzq/KeCDz/ohbGGiV+pnSvgR3Ph04zyWUvbd5W0rYRQRfekY/lYhgIxpvpornNfz4Eo2Oomyu51hgbuMSuOm3LlJiozdnaZ1cLmRf+I7A==
     - secure: Y1AcddmQCOCTCgDm+6x6gn+6wbtknlNJxmzdX2SB0noImvBoFiMf7AzHgSEqND6HAr3n9DvULe+48FWdmB9N4ldakzJJnQjouUHAUcCC9w089692q6toZjo4ctkWYzh0acqm3VexDLd6JMntvFdxgrA20vhMaJddJJFGts/F6YRTJkqnE9lZVaQraJ/ZLUcVcb3KcPZqWceJi5PR5Lx1erFDJBHzd42GrYiRXBglgqeE9GGQS+SawjOUgnEOXYSvhKsKiz4idBMPasSZ2TPOItILfqitYnRuUN74g8ocr+pckRyCYwVLyxx8YnwbEY10iube4AbvW5kV+CgiZ5d1QQ==
 
-  matrix:
-    - ARCH=armhf ADDON=inadyn
-    - ARCH=amd64 ADDON=inadyn
-    - ARCH=i386 ADDON=inadyn
-    - ARCH=aarch64 ADDON=inadyn
+#  matrix:
+#    - ARCH=armhf ADDON=inadyn
+#    - ARCH=amd64 ADDON=inadyn
+#    - ARCH=i386 ADDON=inadyn
+#    - ARCH=aarch64 ADDON=inadyn
 
 integrations:
   hub:
@@ -25,8 +25,6 @@ build:
     options: "-v /hassio-data:/hassio-data -v ~/.docker:/root/.docker"
 
   ci:
-    - sed -i "1s/.*/FROM homeassistant\/${ARCH}-base:latest/" ${ADDON}/Dockerfile
-    - apt-get install jq -y
     - export VERSION=$(cat ${ADDON}/config.json | jq -r '.version')
     - echo "VERSION is $VERSION"
     - rm /hassio-data/* -rf
