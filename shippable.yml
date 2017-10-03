@@ -23,15 +23,15 @@ integrations:
 
 build:
   pre_ci_boot:
-    options: "-v ${SHIPPABLE_BUILD_DIR}/hassio-data:${SHIPPABLE_BUILD_DIR}/hassio-data"
+    options: "-v /hassio-data:/hassio-data"
 
   ci:
     - ls -la
-    - rm ${SHIPPABLE_BUILD_DIR}/hassio-data/* -rf
-    - touch ${SHIPPABLE_BUILD_DIR}/hassio-data/options.json;
-    - echo ${TEST_OPTIONS} > ${SHIPPABLE_BUILD_DIR}/hassio-data/options.json;
+    - rm /hassio-data/* -rf
+    - touch /hassio-data/options.json;
+    - echo ${TEST_OPTIONS} > /hassio-data/options.json;
     - docker build --build-arg BUILD_FROM="homeassistant/amd64-base:latest" -t ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION} -t ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:latest ${ADDON}
-    - docker run --rm -e HOME=/root --v "${SHIPPABLE_BUILD_DIR}/hassio-data:/data" ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION};
+    - docker run --rm -e HOME=/root --v "/hassio-data:/data" ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION};
 
   post_ci:
     - docker push ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION}
