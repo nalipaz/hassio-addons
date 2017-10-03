@@ -34,7 +34,7 @@ build:
   pre_ci_boot:
     image_name: ${DOCKER_HUB_USER}/${ARCH}-${ADDON}
     image_tag: ${VERSION}
-    pull: true
+    pull: false
     env: "TEST_OPTIONS='${TEST_OPTIONS}' SHIPPABLE=${SHIPPABLE}"
     options: "-e HOME=/root -v /tmp/hassio-data:/data"
 
