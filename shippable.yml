@@ -25,13 +25,14 @@ build:
     options: "-v /hassio-data:/hassio-data"
 
   ci:
+    - sed -i "1s/.*/FROM homeassistant/${ARCH}-base:latest" ${ADDON}/Dockerfile
     - apt-get install jq -y
     - export VERSION=$(cat ${ADDON}/config.json | jq -r '.version')
     - echo "VERSION is $VERSION"
     - rm /hassio-data/* -rf
     - touch /hassio-data/options.json
     - echo ${TEST_OPTIONS} > /hassio-data/options.json
-    - docker build --build-arg BUILD_FROM="homeassistant/${ARCH}-base:latest" -t ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION} -t ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:latest ${ADDON}
+    - docker build -t ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION} -t ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:latest ${ADDON}
     - docker run -d --rm -e HOME=/root -v "/hassio-data:/data" ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION}
 
   post_ci:

@@ -1,4 +1,3 @@
-ARG BUILD_FROM
 FROM $BUILD_FROM
 
 ENV INADYN_RELEASE https://github.com/troglobit/inadyn/releases/download/v2.1/inadyn-2.1.tar.xz
