@@ -23,15 +23,16 @@ integrations:
 
 build:
   pre_ci_boot:
-    options: "-v ${SHIPPABLE_BUILD_DIR}/${ADDON}/data:${SHIPPABLE_BUILD_DIR}/${ADDON}/data"
+    options: "-v /data:/data"
 
   pre_ci:
     - ls ${SHIPPABLE_BUILD_DIR}/${ADDON}
     - echo ${SHIPPABLE_BUILD_DIR}
     - pwd
-    - mkdir -p ${SHIPPABLE_BUILD_DIR}/${ADDON}/data
-    - touch ${SHIPPABLE_BUILD_DIR}/${ADDON}/data/options.json;
-    - echo ${TEST_OPTIONS} > ${SHIPPABLE_BUILD_DIR}/${ADDON}/data/options.json;
+    - rm /data -rf
+    - mkdir /data
+    - touch /data/options.json;
+    - echo ${TEST_OPTIONS} > /data/options.json;
 
   ci:
     - docker build --build-arg BUILD_FROM="homeassistant/amd64-base:latest" -t ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION} -t ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:latest ${ADDON}
