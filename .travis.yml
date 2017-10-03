@@ -11,7 +11,7 @@ env:
     - ARCH=aarch64 ADDON=inadyn
 
 before_install:
-  - sudo apt-get install jq -y
+  - apt-cache madison docker-engine
 
 script:
   - export VERSION=$(cat ${ADDON}/config.json | jq -r '.version')
