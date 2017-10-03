@@ -29,6 +29,7 @@ build:
     - ls ${SHIPPABLE_BUILD_DIR}/${ADDON}
     - echo ${SHIPPABLE_BUILD_DIR}
     - pwd
+    - mkdir -p ${SHIPPABLE_BUILD_DIR}/${ADDON}/data
     - touch ${SHIPPABLE_BUILD_DIR}/${ADDON}/data/options.json;
     - echo ${TEST_OPTIONS} > ${SHIPPABLE_BUILD_DIR}/${ADDON}/data/options.json;
 
