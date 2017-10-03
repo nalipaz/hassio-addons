@@ -1,10 +1,24 @@
 sudo: required
+
 services:
   - docker
-before_install:
-  - sudo apt-get install jq
+
 env:
-  - ADDON="ddclient"
+  matrix:
+    - ARCH=armhf ADDON=inadyn
+    - ARCH=amd64 ADDON=inadyn
+    - ARCH=i386 ADDON=inadyn
+    - ARCH=aarch64 ADDON=inadyn
+
+before_install:
+  - sudo apt-get install jq -y
+
 script:
   - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASS
-  - travis_wait 60 ./build.sh $ADDON
+  - export VERSION=$(cat ${ADDON}/config.json | jq -r '.version')
+  - echo "VERSION is $VERSION"
+  - mkdir /hassio-data
+  - touch /hassio-data/options.json
+  - echo ${TEST_OPTIONS} > /hassio-data/options.json
+  - docker build --build-arg BUILD_FROM="homeassistant/${ARCH}-base:latest" -t ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION} -t ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:latest ${ADDON}
+  - docker run -d --rm -e HOME=/root -v "/hassio-data:/data" ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION}
