@@ -30,4 +30,4 @@ build:
     - rm /hassio-data/* -rf
     - touch /hassio-data/options.json
     - echo ${TEST_OPTIONS} > /hassio-data/options.json
-    - docker run --rm --privileged -e HOME=/root -v /root/.docker:/root/.docker -v "/shippable-build-dir":/docker hassioaddons/build-env:latest --target ${ADDON} --tag-latest --${ARCH} --push
+    - docker run --rm --privileged -v /root/.docker:/root/.docker -v "/shippable-build-dir":/docker hassioaddons/build-env:latest --target ${ADDON} --tag-latest --${ARCH} --push
