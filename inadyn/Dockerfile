@@ -11,11 +11,6 @@ ENV LANG='C.UTF-8'\
  GOPATH='/opt/go'
 
 RUN apk --update add curl xz build-base libressl-dev ca-certificates && \
-mkdir -p /tmp/src/libite /tmp/src/libconfuse /tmp/src/inadyn && \
-curl -Lo /tmp/src/libite.tar.xz $LIBITE_RELEASE && \
-tar --strip-components=1 -C /tmp/src/libite -xJf /tmp/src/libite.tar.xz && \
-cd /tmp/src/libite && \
-./configure && \
 make && \
 make install && \
 curl -Lo /tmp/src/libconfuse.tar.xz $LIBCONFUSE_RELEASE && \
