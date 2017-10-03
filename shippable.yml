@@ -25,16 +25,11 @@ build:
   pre_ci_boot:
     options: "-v /data:/data"
 
-  pre_ci:
-    - ls ${SHIPPABLE_BUILD_DIR}/${ADDON}
-    - echo ${SHIPPABLE_BUILD_DIR}
-    - pwd
-    - rm /data -rf
-    - mkdir /data
+  ci:
+    - ls -la
+    - rm /data/* -rf
     - touch /data/options.json;
     - echo ${TEST_OPTIONS} > /data/options.json;
-
-  ci:
     - docker build --build-arg BUILD_FROM="homeassistant/amd64-base:latest" -t ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION} -t ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:latest ${ADDON}
     - docker run --rm -e HOME=/root --volumes-from ${SHIPPABLE_CONTAINER_NAME} ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION};
 
