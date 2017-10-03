@@ -7,11 +7,10 @@ ENV LIBCONFUSE_RELEASE https://github.com/martinh/libconfuse/releases/download/v
 
 ENV LANG='C.UTF-8'\
  LANGUAGE='C.UTF-8'\
- TERM='xterm'\
- GOPATH='/opt/go'
+ TERM='xterm'
 
-RUN apk --update add curl xz build-base libressl-dev ca-certificates && \
-mkdir -p /tmp/src/libite /tmp/src/libconfuse /tmp/src/inadyn
+RUN apk --update add curl xz build-base libressl-dev ca-certificates
+RUN mkdir -p /tmp/src/libite /tmp/src/libconfuse /tmp/src/inadyn
 RUN curl -Lo /tmp/src/libite.tar.xz $LIBITE_RELEASE && \
 tar --strip-components=1 -C /tmp/src/libite -xJf /tmp/src/libite.tar.xz && \
 cd /tmp/src/libite && \
@@ -39,8 +38,8 @@ apk add --no-cache --virtual .build-deps\
  git\
  go && \
 go get -u github.com/quantumew/mustache-cli && \
-cp $GOPATH/bin/* /usr/local/bin/ && \
-rm -rf $GOPATH && \
+cp /opt/go/bin/* /usr/local/bin/ && \
+rm -rf /opt/go && \
 apk del .build-deps
 
 COPY container /
