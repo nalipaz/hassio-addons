@@ -10,11 +10,6 @@ env:
     - ARCH=i386 ADDON=inadyn
     - ARCH=aarch64 ADDON=inadyn
 
-before_install:
-  - sudo apt-get update
-  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
-  - docker --version
-
 script:
   - sed -i "1s/.*/FROM homeassistant\/${ARCH}-base:latest/" ${ADDON}/Dockerfile
   - export VERSION=$(cat ${ADDON}/config.json | jq -r '.version')
@@ -22,7 +17,7 @@ script:
   - mkdir ${TRAVIS_BUILD_DIR}/hassio-data
   - touch ${TRAVIS_BUILD_DIR}/hassio-data/options.json
   - echo ${TEST_OPTIONS} > ${TRAVIS_BUILD_DIR}/hassio-data/options.json
-  - docker build --build-arg BUILD_FROM="homeassistant/${ARCH}-base:latest" -t ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION} -t ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:latest ${ADDON}
+  - docker build -t ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION} -t ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:latest ${ADDON}
   - docker run -d --rm -v "${TRAVIS_BUILD_DIR}/hassio-data:/data" ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION}
 
 after_success:
