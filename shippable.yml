@@ -30,7 +30,7 @@ build:
     - rm /hassio-data/* -rf
     - touch /hassio-data/options.json
     - echo ${TEST_OPTIONS} > /hassio-data/options.json
-    - docker run --privileged -d --rm -e HOME=/root -v "/root/.docker:/root/.docker -v "${PWD}":/docker hassioaddons/build-env:latest --git --target ${ADDON} --${ARCH} --push
+    - docker run --privileged -d --rm -e HOME=/root -v /root/.docker:/root/.docker -v "${PWD}":/docker hassioaddons/build-env:latest --git --target ${ADDON} --${ARCH} --push
 
   post_ci:
     - docker push ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION}
