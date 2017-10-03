@@ -22,7 +22,7 @@ integrations:
 
 build:
   pre_ci_boot:
-    options: "-v /hassio-data:/hassio-data"
+    options: "-v /hassio-data:/hassio-data -v ~/.docker:/root/.docker"
 
   ci:
     - sed -i "1s/.*/FROM homeassistant\/${ARCH}-base:latest/" ${ADDON}/Dockerfile
@@ -32,8 +32,7 @@ build:
     - rm /hassio-data/* -rf
     - touch /hassio-data/options.json
     - echo ${TEST_OPTIONS} > /hassio-data/options.json
-    - docker build -t ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION} -t ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:latest ${ADDON}
-    - docker run -d --rm -e HOME=/root -v "/hassio-data:/data" ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION}
+    - docker run --privileged -d --rm -e HOME=/root -v "/root/.docker:/root/.docker -v "${PWD}":/docker hassioaddons/build-env:latest --git --target ${ADDON} --${ARCH} --push
 
   post_ci:
     - docker push ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION}
