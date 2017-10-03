@@ -26,7 +26,7 @@ build:
 
   ci:
     - apt-get install jq -y
-    - export VERSION=$(cat ${ADDON}/config.json | jq '.version')
+    - export VERSION=$(cat ${ADDON}/config.json | jq -r '.version')
     - echo "VERSION is $VERSION"
     - rm /hassio-data/* -rf
     - touch /hassio-data/options.json
