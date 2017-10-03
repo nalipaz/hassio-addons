@@ -11,8 +11,6 @@ ENV LANG='C.UTF-8'\
  GOPATH='/opt/go'
 
 RUN apk --update add curl xz build-base libressl-dev ca-certificates && \
-make && \
-make install && \
 curl -Lo /tmp/src/libconfuse.tar.xz $LIBCONFUSE_RELEASE && \
 tar --strip-components=1 -C /tmp/src/libconfuse -xJf /tmp/src/libconfuse.tar.xz && \
 cd /tmp/src/libconfuse && \
