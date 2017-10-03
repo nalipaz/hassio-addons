@@ -29,7 +29,7 @@ build:
     - echo ${TEST_OPTIONS} > /tmp/hassio-data/options.json;
 
   pre_ci_boot:
-    options: "-v /tmp/hassio-data:/data"
+    options: "-v /tmp/hassio-data:/tmp/hassio-data"
 
   ci:
     - docker run --rm -e HOME=/root -v /tmp/hassio-data:/data ${DOCKER_HUB_USER}/${ARCH}-${ADDON}:${VERSION};
