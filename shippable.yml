@@ -22,11 +22,9 @@ integrations:
 
 build:
   pre_ci_boot:
-    options: "-v /hassio-data:/hassio-data -v ~/.docker:/root/.docker -v ${SHIPPABLE_BUILD_DIR}:/docker"
+    options: "-v /hassio-data:/hassio-data -v ~/.docker:/root/.docker -v /docker"
 
   ci:
-    - echo ${SHIPPABLE_BUILD_DIR}
-    - ls ${SHIPPABLE_BUILD_DIR}
-    - ls ${SHIPPABLE_BUILD_DIR}/${ADDON}
+    - cp ${SHIPPABLE_BUILD_DIR}/${ADDON}/* /docker/ -rf
     - ls /docker
-    - docker run --rm --privileged -v /root/src/github.com/nalipaz/hassio-addons/inadyn:/docker -v /root/.docker:/root/.docker hassioaddons/build-env:latest --tag-latest --push --${ARCH}
+    - docker run --rm --privileged --volumes-from ${SHIPPABLE_CONTAINER_NAME} -v /root/.docker:/root/.docker hassioaddons/build-env:latest --tag-latest --push --${ARCH}
