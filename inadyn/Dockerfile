@@ -1,4 +1,4 @@
-ARG BUILD_FROM=hassioaddons/base-amd64
+ARG BUILD_FROM
 FROM ${BUILD_FROM}
 
 ENV INADYN_RELEASE https://github.com/troglobit/inadyn/releases/download/v2.2/inadyn-2.2.tar.xz
