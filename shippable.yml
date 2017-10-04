@@ -29,4 +29,4 @@ build:
     - ls ${SHIPPABLE_BUILD_DIR}
     - ls ${SHIPPABLE_BUILD_DIR}/${ADDON}
     - ls /docker
-    - docker run --rm --privileged -v ${SHIPPABLE_BUILD_DIR}/${ADDON}:/docker -v /root/.docker:/root/.docker hassioaddons/build-env:latest --tag-latest --push --${ARCH}
+    - docker run --rm --privileged -v /docker/inadyn:/docker -v /root/.docker:/root/.docker hassioaddons/build-env:latest --tag-latest --push --${ARCH}
