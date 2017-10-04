@@ -27,4 +27,4 @@ build:
   ci:
     - shopt -s dotglob && cp ${SHIPPABLE_BUILD_DIR}/. /docker/ -rf && shopt -u dotglob
     - [ ${IS_RELEASE} == true ] && PUSH='--push' || PUSH=''
-    - docker run --rm -build-arg BUILD_FROM="homeassistant/${ARCH}-base:latest" --privileged --volumes-from ${SHIPPABLE_CONTAINER_NAME} -v /root/.docker:/root/.docker hassioaddons/build-env:latest --target ${ADDON} --tag-latest ${PUSH} --${ARCH}
+    - docker run --rm --from "homeassistant/{arch}-base:latest" --privileged --volumes-from ${SHIPPABLE_CONTAINER_NAME} -v /root/.docker:/root/.docker hassioaddons/build-env:latest --target ${ADDON} --tag-latest ${PUSH} --${ARCH}
