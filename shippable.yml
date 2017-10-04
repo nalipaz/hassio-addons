@@ -25,11 +25,7 @@ build:
     options: "-v /hassio-data:/hassio-data -v ~/.docker:/root/.docker -v ${SHIPPABLE_BUILD_DIR}:/docker"
 
   ci:
-    - export VERSION=$(cat ${ADDON}/config.json | jq -r '.version')
-    - echo "VERSION is $VERSION"
-    - rm /hassio-data/* -rf
-    - touch /hassio-data/options.json
-    - echo ${TEST_OPTIONS} > /hassio-data/options.json
     - echo ${SHIPPABLE_BUILD_DIR}
     - ls ${SHIPPABLE_BUILD_DIR}
+    - ls ${SHIPPABLE_BUILD_DIR}/${ADDON}
     - docker run --rm --privileged -v /docker:/docker -v /root/.docker:/root/.docker hassioaddons/build-env:latest --target ${ADDON} --tag-latest --push --${ARCH}
