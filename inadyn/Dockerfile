@@ -6,7 +6,8 @@ ENV LIBITE_RELEASE https://github.com/troglobit/libite/releases/download/v1.9.2/
 ENV LIBCONFUSE_RELEASE https://github.com/martinh/libconfuse/releases/download/v3.2.1/confuse-3.2.1.tar.xz
 
 ENV LANG='C.UTF-8'\
- TERM='xterm-256color'
+ TERM='xterm-256color'\
+ GOPATH='/opt/go'
 
 RUN apk --no-cache add curl xz build-base libressl-dev ca-certificates
 RUN mkdir -p /tmp/src/libite /tmp/src/libconfuse /tmp/src/inadyn
@@ -37,7 +38,8 @@ RUN apk upgrade --no-cache &&\
  git\
  go &&\
  go get -u github.com/quantumew/mustache-cli &&\
- rm -rf /opt/go &&\
+ cp $GOPATH/bin/* /usr/local/bin/ && \
+ rm -rf $GOPATH &&\
  apk del .build-deps
 
 COPY container /
