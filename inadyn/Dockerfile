@@ -42,4 +42,4 @@ RUN apk upgrade --no-cache &&\
 
 COPY container /
 
-ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/run.sh"]
