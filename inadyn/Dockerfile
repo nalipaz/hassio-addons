@@ -14,7 +14,8 @@ RUN apk --no-cache add curl xz build-base libressl-dev ca-certificates
 RUN for app in libite libconfuse inadyn; do\
   mkdir -p /tmp/src/${app} &&\
   release_url="${app}_release" &&\
-  if [ ${app} == "inadyn" ]; then config_options='--enable-openssl'; else config_options=''; fi &&\
+  echo "${!release_url}" &&\
+  if [ "${app}" == "inadyn" ]; then config_options='--enable-openssl'; else config_options=''; fi &&\
   curl -Lo /tmp/src/${app}.tar.xz "${!release_url}" &&\
   tar --strip-components=1 -C /tmp/src/${app} -xJf /tmp/src/${app}.tar.xz &&\
   cd /tmp/src/${app} &&\
