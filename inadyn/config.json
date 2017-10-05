@@ -7,6 +7,7 @@
   "startup": "system",
   "boot": "auto",
   "image": "nicholasalipaz/{arch}-inadyn",
+  "host_network": true,
   "options": {
     "providers": [
       {
