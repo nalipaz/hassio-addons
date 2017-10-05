@@ -38,3 +38,23 @@ RUN apk upgrade --no-cache &&\
 COPY container /
 
 CMD ["/run.sh"]
+
+ARG BUILD_ARCH
+ARG BUILD_DATE
+ARG BUILD_REF
+ARG BUILD_VERSION
+
+LABEL \
+    io.hass.arch="${BUILD_ARCH}" \
+    io.hass.type="addon" \
+    io.hass.version=${BUILD_VERSION} \
+    maintainer="Nicholas Alipaz <nicholas@alipaz.net>" \
+    org.label-schema.description="Inadyn add-on for Hass.io" \
+    org.label-schema.build-date=${BUILD_DATE} \
+    org.label-schema.name="Hass.io inadyn add-on for ${BUILD_ARCH}" \
+    org.label-schema.schema-version="1.0" \
+    org.label-schema.url="https://addons.community" \
+    org.label-schema.usage="https://github.com/nalipaz/hassio-addons/tree/master/README.md" \
+    org.label-schema.vcs-ref=${BUILD_REF} \
+    org.label-schema.vcs-url="https://github.com/nalipaz/hassio-addons" \
+    org.label-schema.vendor="Nicholas Alipaz' Hass.io Addons"
