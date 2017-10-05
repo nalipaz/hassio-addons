@@ -15,7 +15,7 @@ RUN ["/bin/bash", "-c", "\
 for app in libite libconfuse inadyn; do\
   mkdir -p /tmp/src/${app} &&\
   release_url=\"${app}_release\" &&\
-  if [ ${app} == 'inadyn' ]; then config_options='--enable-openssl'; else config_options=''; fi &&\
+  [ ${app} == 'inadyn' ] && config_options='--enable-openssl' || config_options='';\
   curl -Lo /tmp/src/${app}.tar.xz \"${!release_url}\" &&\
   tar --strip-components=1 -C /tmp/src/${app} -xJf /tmp/src/${app}.tar.xz &&\
   cd /tmp/src/${app} &&\
