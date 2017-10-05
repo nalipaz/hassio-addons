@@ -8,6 +8,7 @@
   "boot": "auto",
   "image": "nicholasalipaz/{arch}-inadyn",
   "host_network": true,
+  "privileged": "NET_ADMIN",
   "options": {
     "providers": [
       {
