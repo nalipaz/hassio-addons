@@ -4,16 +4,17 @@ period = 3600
 forced-update = 2419200
 
 {{#providers}}
-provider {{provider}} {
-    username         = {{username}}
-    password         = {{password}}
-    hostname         = {{hostname}}{{#ssl}}
+{{#custom_provider}}custom{{/custom_provider}}{{^custom_provider}}provider{{/custom_provider}} {{provider}} {
+    username         = "{{username}}"{{#password}}
+    password         = "{{password}}"{{/password}}
+    hostname         = "{{hostname}}"{{#ssl}}
     ssl              = {{ssl}}{{/ssl}}{{#user_agent}}
-    user-agent       = {{user_agent}}{{/user_agent}}{{#checkip_ssl}}
+    user-agent       = "{{user_agent}}"{{/user_agent}}{{#checkip_ssl}}
     checkip-ssl      = {{checkip_ssl}}{{/checkip_ssl}}{{#checkip_server}}
-    checkip-server   = {{checkip_server}}{{/checkip_server}}{{#checkip_command}}
-    checkip-command  = {{checkip_command}}{{/checkip_command}}{{#checkip_path}}
-    checkip-path     = {{checkip_path}}{{/checkip_path}}
+    checkip-server   = "{{checkip_server}}"{{/checkip_server}}{{#checkip_command}}
+    checkip-command  = "{{checkip_command}}"{{/checkip_command}}{{#checkip_path}}
+    checkip-path     = "{{checkip_path}}"{{/checkip_path}}{{#ddns_server}}
+    ddns-server      = "{{ddns_server}}"{{/ddns_server}}{{#ddns_path}}
+    ddns-path        = "{{ddns_path}}"{{/ddns_path}}
 }
-
 {{/providers}}
