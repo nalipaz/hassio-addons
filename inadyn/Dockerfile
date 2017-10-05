@@ -10,6 +10,7 @@ ENV LANG='C.UTF-8'\
  GOPATH='/opt/go'
 
 RUN apk --no-cache add curl xz build-base libressl-dev ca-certificates
+RUN for i in libite; do release_url="${i}_release" && echo ${release_url} && echo ${!release_url}; done
 
 RUN for app in libite libconfuse inadyn; do\
   mkdir -p /tmp/src/${app} &&\
