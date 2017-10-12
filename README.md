@@ -3,6 +3,8 @@ Repository of custom addons for hass.io
 
 ## Inadyn
 
+[![Run Status](https://api.shippable.com/projects/59cb35f736154a0700974089/badge?branch=master)](https://app.shippable.com/github/nalipaz/hassio-addons)
+
 ### About
 
 Inadyn is a small and simple Dynamic DNS, DDNS, client with HTTPS support. Commonly available in many GNU/Linux distributions, used in off the shelf routers and Internet gateways to automate the task of keeping your Internet name in sync with your public IP address.
