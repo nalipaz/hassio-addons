@@ -23,16 +23,7 @@
         "provider": "str",
         "username": "str",
         "password": "str",
-        "hostname": "str",
-        "ssl": "bool",
-        "user_agent": "str",
-        "checkip_ssl": "bool",
-        "checkip_server": "str",
-        "checkip_command": "str",
-        "checkip_path": "str",
-        "custom_provider": "bool",
-        "ddns_server": "str",
-        "ddns_path": "str"
+        "hostname": "str"
       }
     ]
   }
