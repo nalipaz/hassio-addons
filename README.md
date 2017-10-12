@@ -75,7 +75,7 @@ for a custom provider that is not supported by inadyn you can do:
       "password": "password",
       "hostname": "your.domain.com",
       "ddns_server": "api.cp.easydns.com",
-      "ddns_path": "/dyn/generic.php?hostname=%h&myip=%i",
+      "ddns_path": "/somescript.php?hostname=%h&myip=%i",
       "custom_provider": true
     }
   ]
