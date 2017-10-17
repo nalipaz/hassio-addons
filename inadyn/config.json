@@ -1,6 +1,6 @@
 {
   "name": "Internet Automated Dynamic DNS Client",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "slug": "inadyn",
   "description": "Inadyn is a small and simple Dynamic DNS, DDNS, client with HTTPS support. A large number of dynamic dns providers are supported (https://github.com/troglobit/inadyn#supported-providers). For those that are not, you can use a custom provider as per this project's documentation (https://github.com/nalipaz/hassio-addons/blob/master/README.md).",
   "url": "https://github.com/nalipaz/hassio-addons/tree/master/inadyn",
@@ -19,21 +19,31 @@
     ]
   },
   "schema": {
+    "verify_address": "bool?",
+    "fake_address": "bool?",
+    "allow_ipv6": "bool?",
+    "iface": "str?",
+    "iterations": "int?",
+    "period": "int?",
+    "forced_update": "bool?",
+    "secure_ssl": "bool?",
     "providers": [
       {
         "provider": "str",
+        "custom_provider": "bool?",
         "username": "str",
         "password": "str?",
-        "hostname": "str",
         "ssl": "bool?",
-        "user_agent": "str?",
+        "hostname": "str",
         "checkip_ssl": "bool?",
         "checkip_server": "str?",
         "checkip_command": "str?",
         "checkip_path": "str?",
-        "custom_provider": "bool?",
+        "user_agent": "str?",
+        "wildcard": "bool?",
         "ddns_server": "str?",
-        "ddns_path": "str?"
+        "ddns_path": "str?",
+        "append_myip": "bool?"
       }
     ]
   }
