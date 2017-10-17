@@ -19,21 +19,30 @@ The available configuration options are as follows (this is filled in with some 
 
 ```
 {
+  "verify_address": false,
+  "fake_address": false,
+  "allow_ipv6": true,
+  "iface": "eth0",
+  "iterations": 0,
+  "period": 300,
+  "forced_update": false,
+  "secure_ssl": true,
   "providers": [
     {
       "provider": "providerslug",
+      "custom_provider": false,
       "username": "yourusername",
       "password": "yourpassword_or_token",
-      "hostname": "dynamic-subdomain.example.com",
       "ssl": true,
-      "user_agent": "Mozilla/5.0",
+      "hostname": "dynamic-subdomain.example.com",
       "checkip_ssl": false,
       "checkip_server": "api.example.com",
       "checkip_command": "/sbin/ifconfig eth0 | grep 'inet6 addr'",
       "checkip_path": "/",
-      "custom_provider": false,
+      "user_agent": "Mozilla/5.0",
       "ddns_server": "ddns.example.com",
-      "ddns_path": ""
+      "ddns_path": "",
+      "append_myip": false
     }
   ]
 }
